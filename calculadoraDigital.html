@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Light</title>
+</head>
+<body>
+    <h1>simulador de lux (intensidade luminosa) de sua area de trabalho</h1>
+    insira quantas lampadas você tem em sua área de trabalho: <br>
+    <input id="ipt_lampadas" type="number"> <br> <br>
+    insira a lumen (intensidade de brilho) do tipo de lampada que você utiliza: <br>
+    <input id="ipt_lumen" type="number"> <br> <br>
+    insira quantos metros quadrados sua área de trabalho possue: <br>
+    <input id="ipt_m2" type="number"> <br> <br> 
+    <button onclick="intensidadeLuminosa()">calcule a lux</button>
+    <div id="div_luz"></div>
+</body>
+</html>
+<script>
+    function intensidadeLuminosa(){
+        var qtdlamp = ipt_lampadas.value
+        var lumen = ipt_lumen.value
+        var m2 = ipt_m2.value
+        var lumenTotal = lumen * qtdlamp
+        var lux = (lumenTotal / m2)
+        var luxMenos = (300 - lux)
+        var luxMais = (lux - 500)
+        var luxTotal = lux
+        div_luz.innerHTML = `o nivel de intensidade luminosa de sua área de trabalho é de ${lux} lux <br>`
+        if (lux < 300){
+            div_luz.innerHTML += `<p style="color:red"> o que está ${luxMenos} lux abaixo do nivel recomendado, o que pode causar problemas de visão` 
+        } else if (lux > 500){
+            div_luz.innerHTML += `<p style="color:red"> o que está ${luxMais} lux acima do nivel recomendado, o que alem de prejudicar a visão ainda gera um disperdicio de energia eletrica`
+        } else {
+            div_luz.innerHTML += `<p style="color:blue"> parabens, o nivel de intensidade luminosa está dentro do recomendado`
+        }
+        
+    }
+</script>
